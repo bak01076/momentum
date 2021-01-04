@@ -1,14 +1,19 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Something</title>
-    <link rel="stylesheet" href="index.css" />
-  </head>
+const clockContainer = document.querySelector(".js-clock"),
+  clock = document.querySelector("h1");
 
-  <body>
-    <div class="js-clock">
-      <h1>00:00</h1>
-    </div>
-    <script src="clock.js"></script>
-  </body>
-</html>
+function getTime() {
+  const date = new Date();
+  const hour = date.getHours();
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
+  clock.innerText = `${hour < 10 ? `0${hour}` : `${hour}`}:${
+    minutes < 10 ? `0${minutes}` : `${minutes}`
+  }:${seconds < 10 ? `0${seconds}` : `${seconds}`}`;
+}
+
+function init() {
+  getTime();
+  setInterval(getTime, 1000);
+}
+
+init();
